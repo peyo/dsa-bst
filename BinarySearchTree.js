@@ -144,3 +144,5 @@ class BinarySearchTree {
     return this.left._findMin();
   }
 }
+
+module.exports = BinarySearchTree
