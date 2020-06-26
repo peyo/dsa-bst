@@ -1,3 +1,58 @@
+// O(n^n)
+// Reference:
+// https://www.geeksforgeeks.org/check-if-two-given-key-sequences-construct-same-bsts/
+// There's a faster way of solving this:
+// https://www.geeksforgeeks.org/check-for-identical-bsts-without-building-the-trees/
+
+function sameBST(arr1, arr2) {
+  if (arr1.length !== arr2.length) { 
+    return false;
+  }
+
+  if (arr1.length == 0) {
+    return true;
+  }
+
+  if (arr1[0] !== arr2[0]) {
+    return false;
+  }
+
+  arrLeft1 = [];
+  arrRight1 = [];
+  arrLeft2 = [];
+  arrRight2 = [];
+
+  for (let i = 1; i < arr1.length; i++) {
+    if (arr1[i] < arr1[0]) {
+      arrLeft1.push(arr1[i])
+    }
+
+    else {
+      arrRight1.push(arr1[i])
+    }
+
+    if (arr2[i] < arr2[0]) {
+      arrLeft2.push(arr2[i])
+    }
+
+    else {
+      arrRight2.push(arr2[i])
+    }
+  }
+
+  function _sameBST(arrLeft1, arrLeft2, arrRight1, arrRight2) {
+    return sameBST(arrLeft1, arrLeft2) && sameBST(arrRight1, arrRight2) 
+  }
+
+  return _sameBST(arrLeft1, arrLeft2, arrRight1, arrRight2)
+}
+
+module.exports = { sameBST }
+
+/*
+
+THIS SOLUTION DOES NOT USE ARRAYS OR LINKED LISTS. JUST SIMPLE RECURSION AND VALUE COMPARISONS.
+
 function sameBST(arr1, arr2) {
   let sameRoots = false;
 
@@ -19,7 +74,6 @@ function sameBST(arr1, arr2) {
 }
 
   // Check to see if the first left node on both trees are the same. Also, check to see if the first right node on both trees are the same.
-
 function _checkNodes(root, arr1, arr2) {
   const firstLeft1 = arr1.find((val) => val < root);
   const firstLeft2 = arr2.find((val) => val < root);
@@ -51,7 +105,13 @@ function _checkNodes(root, arr1, arr2) {
     _checkNodes(firstRight1, arr1Right, arr2Right);
   }
 
-  return console.log("Same BSTs.");
+  return console.log(`Same BSTs.`);
 }
 
 module.exports = { sameBST };
+*/
+
+/*
+Reference:
+https://github.com/thinkful-ei-firefly/DSA-BST-Julian-Jessica/blob/master/BSThelperFns.js
+*/

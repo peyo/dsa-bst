@@ -39,8 +39,12 @@ main = () => {
   //thirdLargest(BST);
 
   const arr1 = [3, 5, 4, 6, 1, 0, 2]
-  const arr2 = [3, 1, 5, 2, 4, 6, 0]
-  sameBST(arr1, arr2);
+  const arr2 = [3, 1, 5, 2, 4, 6, 9]
+  if (sameBST(arr1, arr2)) {
+    console.log("true");
+  } else {
+    console.log("false");
+  }
 };
 
 return main();
